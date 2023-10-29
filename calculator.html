@@ -1,0 +1,206 @@
+<!-- Create a simple Program to build the Calculator in JavaScript using with HTML and CSS web languages. -->
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  
+<title> JavaScript Calculator </title>
+
+<style>
+#clear{
+  width: 230px;
+  border: 3px solid gray;
+      border-radius: 3px;
+      padding: 15px;
+      background-color: rgba(247, 105, 11, 0.826);
+  }
+  #clear:active{
+    font-size:medium;
+    background-color: rgb(141, 80, 146);
+  }
+  
+  .gd:active{
+    font-size:medium;
+    background-color: rgb(219, 110, 59);
+    text-align: center;
+  }
+  .gd{
+    
+  display: inline-block;
+  width: 42px;
+  height: 60px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: rgba(255, 17, 0, 0.932);
+  align-items: center;
+
+  }
+
+  .btn btn-primary{
+    font-weight: bold;
+    color: red;
+  }
+  
+  .formstyle
+  {
+  width: 240px;
+  height: 500px;
+  margin: auto;
+  border: 3px solid rgba(77, 182, 224, 0.308);
+  border-radius: 20px;
+  padding: 50px;
+  background-image: url("img2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  }
+  
+  .form1{
+    padding: 20px;
+    margin: 50%;
+  }
+  .input
+  {
+    width: 200px;
+    height:300px;
+    color: rgba(255, 255, 255, 0.363);
+     margin: 20px;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  #back:active{
+    font-size:medium;
+    background-color: rgb(35, 38, 219);
+    text-align: center;
+  }
+  #myBtn:active{
+    font-size:medium;
+    background-color: rgb(219, 110, 59);
+    text-align: center;
+  }
+  #calc{
+  width: 190px;
+  border: 5px solid black;
+      border-radius: 3px;
+      padding: 20px;
+      margin: auto;
+  }
+  #calc:active{
+    font-size:medium;
+   
+  }
+  body{
+    background-image: url("img3.webp");
+    background-repeat: no-repeat;
+  background-size: cover;
+  }
+  
+  #message{
+    color: red;
+    
+  }
+
+  a.btn.btn-primary {
+    font-weight: bold; /* Make the text bold */
+    color: red;       /* Change the text color to red */
+   text-align: left;
+  }
+
+
+  </style>
+</head>
+<body>
+
+<div class= "formstyle">
+<form name = "form1">
+	
+	<!-- This input box shows the button pressed by the user in calculator. -->
+  <input id = "calc" type ="text" name = "answer"  placeholder="Enter any Numbers"
+  title="Enter only numbers">
+  <div class="input">
+  <!-- Display the calculator button on the screen. -->
+  <!-- onclick() function display the number prsses by the user. -->
+  <button onclick="showValue(this)" class="gd" >1</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >2</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >3</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >+</button>&nbsp;<br>
+  <br> 
+  
+  <button onclick="showValue(this)" class="gd" >4</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >5</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >6</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >-</button>&nbsp;<br>
+  <br> 
+  
+  <button onclick="showValue(this)" class="gd" >7</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >8</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >9</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >*</button>&nbsp;<br>
+  <br> 
+  <button onclick="showValue(this)" class="gd" >/</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >0</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >.</button>&nbsp;
+  <button onclick="performOperation()" id="myBtn"onchange="checkValue(event)"class="gd">=</button>&nbsp;<br>
+ 
+<br>
+  <!-- Display the Cancel button and erase all data entered by the user. -->
+  <button onclick="showValue(this)" class="gd" >%</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >(</button>&nbsp;
+  <button onclick="showValue(this)" class="gd" >)</button>&nbsp;
+  <button onclick="showValue()"class="gd">DC</button>&nbsp;<br>
+</div><br><br><br><br>
+  <input type = "button" value = "Clear All" onclick = "form1.answer.value = ' ' " id= "clear" >
+  <br> 
+</form>
+<br/>
+<br/><br/>
+
+
+<a href="navbar.html" class="btn btn-primary">Back to HOME</a>
+
+</div>
+<script>
+  //code for display the values in textbox
+  function showValue(element) {
+        document.getElementById("calc").value += element.innerHTML;
+        event.preventDefault();
+  }
+  //code for performing operations
+  function performOperation() {
+        document.getElementById("calc").value = eval(document.getElementById("calc").value);
+        event.preventDefault();
+      }
+      //code for enter button
+var input = document.getElementById("calc");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("myBtn").click();
+  }
+});
+
+  //code for delete button
+      function deleteCharacter() {
+        document.getElementById("calc").value = document.getElementById("calc").value.slice(0, -1);
+      var message = document.getElementById("message");
+      var inputValue = document.getElementById("calc").value;
+        var pattern = /^[0-9\+\-\*\/\(\)\.\%]+$/;
+        
+        if (!pattern.test(inputValue)) {
+          if(inputValue==""){
+            document.getElementById("calc").style.borderColor = "";
+          document.getElementById("message").innerHTML = "";
+          }
+        }
+        event.preventDefault();
+      }
+  
+
+</script>
+</body>
+</html>
